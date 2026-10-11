@@ -1,6 +1,6 @@
 # WPILib Vendor Template
 
-This is the base WPILib vendor template for 2023.
+This is the base WPILib vendor template for 2025.
 
 ## Layout
 
@@ -20,6 +20,6 @@ For the driver, change the library name in privateExportsConfigs, the driver nam
 For the maven artifact names, those are all in publish.gradle about 40 lines down.
 
 ## Building and editing
-This uses gradle, and uses the same base setup as a standard GradleRIO robot project. This means you build with `./gradlew build`, and can install the native toolchain with `./gradlew installRoboRIOToolchain`. If you open this project in VS Code with the wpilib extension installed, you will get intellisense set up for both C++ and Java.
+This uses gradle, and uses the same base setup as a standard GradleRIO robot project. This means you build with `./gradlew build`, and can install the native toolchain with `./gradlew installSystemCoreToolchain`. If you open this project in VS Code with the wpilib extension installed, you will get intellisense set up for both C++ and Java.
 
 By default, this template builds against the latest WPILib development build. To build against the last WPILib tagged release, build with `./gradlew build -PreleaseMode`.

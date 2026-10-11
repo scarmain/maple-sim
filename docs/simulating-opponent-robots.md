@@ -268,7 +268,7 @@ public static void startOpponentRobotSimulations() {
 
         ... // create more opponent robots if you need
     } catch (Exception e) {
-        DriverStation.reportError("Failed to load opponent robot simulation paths, error: " + e.getMessage(), false);
+        DriverStationErrors.reportError("Failed to load opponent robot simulation paths, error: " + e.getMessage(), false);
     }
 }
 ```

@@ -39,11 +39,10 @@ maple-sim/
 - `cpp` - C++ support (minimal usage)
 - `google-test` - Testing framework
 - `com.diffplug.spotless` 7.0.0.BETA4 - Code formatting
-- `edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin` 2025.0 - WPILib repos
-- `edu.wpi.first.NativeUtils` 2025.9.0 - Native utilities
-- `edu.wpi.first.GradleJni` 1.1.0 - JNI support
-- `edu.wpi.first.GradleVsCode` 2.1.0 - VSCode integration
-- `edu.wpi.first.GradleRIO` 2025.3.2 - FRC robot support
+- `edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin` 2027.0.0 - WPILib repos
+- `edu.wpi.first.NativeUtils` 2027.14.3 - Native utilities
+- `edu.wpi.first.GradleJni` 2027.0.0 - JNI support
+- `edu.wpi.first.GradleVsCode` 2027.0.0 - VSCode integration
 - `maven-publish` - Publishing to Maven
 
 ### Dependencies
@@ -51,7 +50,7 @@ maple-sim/
 **Core Physics**:
 - `org.dyn4j:dyn4j:5.0.2` - Physics engine
 
-**WPILib Dependencies** (version 2025.3.2):
+**WPILib Dependencies** (version 2027_alpha7):
 - `cscore-java` - Camera support
 - `cameraserver-java` - Camera server
 - `ntcore-java` - NetworkTables
@@ -59,13 +58,12 @@ maple-sim/
 - `wpiutil-java` - Utilities
 - `wpimath-java` - Math library
 - `wpiunits-java` - Units library
-- `wpilibNewCommands-java` - Command-based framework
 - `hal-java` - Hardware abstraction layer
 
 **Additional Libraries**:
-- `org.ejml:ejml-simple:0.43.1` - Matrix operations
-- `com.fasterxml.jackson.*:2.15.2` - JSON processing
-- `edu.wpi.first.thirdparty.frc2024.opencv:opencv-java:4.8.0-2` - OpenCV
+- `org.ejml:ejml-simple:0.44.0` - Matrix operations
+- `com.fasterxml.jackson.*:2.19.2` - JSON processing
+- `org.wpilib.thirdparty.opencv:opencv-java:2027-4.13.0-3` - OpenCV
 
 ### Build Tasks
 
@@ -105,7 +103,7 @@ maple-sim/
 **Maven Coordinates**:
 - **Group ID**: `org.ironmaple`
 - **Artifact ID**: `maplesim-java`
-- **Version**: Defined in `project/publish.gradle` (currently `0.3.14-test`)
+- **Version**: Defined in `project/publish.gradle` (field `pubVersion`,  currently `0.5.0-2027_alpha7`)
 
 **Publishing Location**:
 - Local test repo: `docs/vendordep/repos/releases`
@@ -214,7 +212,7 @@ double x;
 ```
 
 **4. Use WPILib Units Library**
-- Use `edu.wpi.first.units` for all public APIs and configurations
+- Use `org.wpilib.units` for all public APIs and configurations
 - OK to use `double` for internal calculations, but:
   - Must use SI units
   - Must include units in variable names
