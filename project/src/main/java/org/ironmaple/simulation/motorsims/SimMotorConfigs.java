@@ -1,11 +1,11 @@
 package org.ironmaple.simulation.motorsims;
 
-import static edu.wpi.first.units.Units.*;
-import static edu.wpi.first.units.Units.Volts;
+import static org.wpilib.units.Units.*;
+import static org.wpilib.units.Units.Volts;
 
-import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.units.*;
-import edu.wpi.first.units.measure.*;
+import org.wpilib.math.system.DCMotor;
+import org.wpilib.units.*;
+import org.wpilib.units.measure.*;
 
 /**
  *

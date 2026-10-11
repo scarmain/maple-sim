@@ -1,10 +1,10 @@
 package org.ironmaple.simulation.drivesims.configs;
 
-import static edu.wpi.first.units.Units.*;
+import static org.wpilib.units.Units.*;
 
-import edu.wpi.first.math.system.plant.DCMotor;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.units.measure.*;
+import org.wpilib.math.system.DCMotor;
+import org.wpilib.units.Units;
+import org.wpilib.units.measure.*;
 import java.util.function.Supplier;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.drivesims.SwerveModuleSimulation;
@@ -34,7 +34,7 @@ public class SwerveModuleSimulationConfig implements Supplier<SwerveModuleSimula
      * @param steerRotationalInertia the rotational inertia of the entire steering mechanism
      * @param wheelsCoefficientOfFriction the <a
      *     href='https://simple.wikipedia.org/wiki/Coefficient_of_friction#:~:text=A%20coefficient%20of%20friction%20is%20a%20value%20that%20shows%20the'>coefficient
-     *     of friction</a> of the tires, normally around 1.2 {@link Units#inchesToMeters(double)}.
+     *     of friction</a> of the tires, normally around 1.2.
      */
     public SwerveModuleSimulationConfig(
             DCMotor driveMotorModel,

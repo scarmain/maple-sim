@@ -1,15 +1,15 @@
 package org.ironmaple.simulation.seasonspecific.reefscape2025;
 
-import static edu.wpi.first.units.Units.*;
+import static org.wpilib.units.Units.*;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.units.measure.Angle;
-import edu.wpi.first.units.measure.Distance;
-import edu.wpi.first.units.measure.LinearVelocity;
-import edu.wpi.first.wpilibj.DriverStation;
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.geometry.Translation2d;
+import org.wpilib.math.kinematics.ChassisVelocities;
+import org.wpilib.units.measure.Angle;
+import org.wpilib.units.measure.Distance;
+import org.wpilib.units.measure.LinearVelocity;
+import org.wpilib.wpilibj.DriverStation;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.gamepieces.GamePieceOnFieldSimulation;
 import org.ironmaple.simulation.gamepieces.GamePieceProjectile;
@@ -19,7 +19,7 @@ public class ReefscapeCoralOnFly extends GamePieceProjectile {
     public ReefscapeCoralOnFly(
             Translation2d robotPosition,
             Translation2d shooterPositionOnRobot,
-            ChassisSpeeds chassisSpeeds,
+            ChassisVelocities chassisSpeeds,
             Rotation2d shooterFacing,
             Distance initialHeight,
             LinearVelocity launchingSpeed,
@@ -60,7 +60,7 @@ public class ReefscapeCoralOnFly extends GamePieceProjectile {
                 ? new ReefscapeCoralOnFly(
                         pos,
                         new Translation2d(),
-                        ChassisSpeeds.fromRobotRelativeSpeeds(new ChassisSpeeds(3.0, 0, 0), rot),
+                        ChassisVelocities.fromRobotRelativeSpeeds(new ChassisVelocities(3.0, 0, 0), rot),
                         rot.rotateBy(Rotation2d.kCCW_90deg),
                         Centimeters.of(98),
                         MetersPerSecond.of(0),

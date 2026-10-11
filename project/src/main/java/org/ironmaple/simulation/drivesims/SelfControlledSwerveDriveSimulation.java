@@ -1,19 +1,19 @@
 package org.ironmaple.simulation.drivesims;
 
-import static edu.wpi.first.units.Units.*;
+import static org.wpilib.units.Units.*;
 
-import edu.wpi.first.math.Matrix;
-import edu.wpi.first.math.VecBuilder;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.*;
-import edu.wpi.first.math.numbers.N1;
-import edu.wpi.first.math.numbers.N3;
-import edu.wpi.first.units.measure.*;
-import edu.wpi.first.wpilibj.Timer;
+import org.wpilib.math.linalg.Matrix;
+import org.wpilib.math.linalg.VecBuilder;
+import org.wpilib.math.controller.PIDController;
+import org.wpilib.math.estimator.SwerveDrivePoseEstimator;
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.geometry.Translation2d;
+import org.wpilib.math.kinematics.*;
+import org.wpilib.math.numbers.N1;
+import org.wpilib.math.numbers.N3;
+import org.wpilib.units.measure.*;
+import org.wpilib.system.Timer;
 import java.util.Arrays;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.drivesims.configs.DriveTrainSimulationConfig;
@@ -98,7 +98,7 @@ public class SelfControlledSwerveDriveSimulation {
      *
      * <h2>Periodic Method for Simplified Swerve Sim.</h2>
      *
-     * <p>Call this method in the {@link edu.wpi.first.wpilibj2.command.Subsystem#periodic()} of your swerve subsystem.
+     * <p>Call this method in the {@link org.wpilib.wpilibj2.command.Subsystem#periodic()} of your swerve subsystem.
      *
      * <p>Updates the odometry by fetching cached inputs.
      */
@@ -106,7 +106,7 @@ public class SelfControlledSwerveDriveSimulation {
         final SwerveModulePosition[][] cachedModulePositions = getCachedModulePositions();
         for (int i = 0; i < SimulatedArena.getSimulationSubTicksIn1Period(); i++)
             poseEstimator.updateWithTime(
-                    Timer.getFPGATimestamp()
+                    Timer.getMonotonicTimestamp()
                             - SimulatedArena.getSimulationDt().in(Seconds)
                                     * (SimulatedArena.getSimulationDt().in(Seconds) - i),
                     swerveDriveSimulation.gyroSimulation.getCachedGyroReadings()[i],
@@ -267,20 +267,20 @@ public class SelfControlledSwerveDriveSimulation {
      *     corner of the robot and provide a chassis speed that has only a dtheta component, the robot will rotate
      *     around that corner.
      * @param fieldCentricDrive Whether to execute field-centric drive with the provided speed.
-     * @param discretizeSpeeds Whether to apply {@link ChassisSpeeds#discretize(ChassisSpeeds, double)} to the provided
+     * @param discretizeSpeeds Whether to apply {@link ChassisVelocities#discretize(ChassisVelocities, double)} to the provided
      *     speed.
      */
     public void runChassisSpeeds(
-            ChassisSpeeds chassisSpeeds,
+            ChassisVelocities chassisSpeeds,
             Translation2d centerOfRotationMeters,
             boolean fieldCentricDrive,
             boolean discretizeSpeeds) {
         if (fieldCentricDrive) {
-            chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+            chassisSpeeds = ChassisVelocities.fromFieldRelativeSpeeds(
                     chassisSpeeds, getOdometryEstimatedPose().getRotation());
         }
         if (discretizeSpeeds) {
-            chassisSpeeds = ChassisSpeeds.discretize(
+            chassisSpeeds = ChassisVelocities.discretize(
                     chassisSpeeds,
                     SimulatedArena.getSimulationDt().in(Seconds) * SimulatedArena.getSimulationSubTicksIn1Period());
         }

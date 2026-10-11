@@ -1,14 +1,14 @@
 package org.ironmaple.simulation.drivesims;
 
-import static edu.wpi.first.units.Units.*;
+import static org.wpilib.units.Units.*;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.units.measure.*;
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.geometry.Translation2d;
+import org.wpilib.math.kinematics.ChassisSpeeds;
+import org.wpilib.math.kinematics.SwerveDriveKinematics;
+import org.wpilib.math.kinematics.SwerveModuleState;
+import org.wpilib.units.measure.*;
 import java.util.Arrays;
 import java.util.function.Supplier;
 import org.dyn4j.geometry.Vector2;
@@ -50,7 +50,7 @@ import org.ironmaple.utils.mathutils.MapleCommonMath;
  *   <li>Obtain the {@link SwerveModuleSimulation} instances through {@link #getModules()}.
  *   <li>Create an <a href='https://github.com/Mechanical-Advantage/AdvantageKit/blob/main/docs/RECORDING-INPUTS.md'>IO
  *       Implementation</a> that wraps around {@link SwerveModuleSimulation} to retrieve encoder readings.
- *   <li>Update a {@link edu.wpi.first.math.estimator.SwerveDrivePoseEstimator} using the encoder readings, similar to
+ *   <li>Update a {@link org.wpilib.math.estimator.SwerveDrivePoseEstimator} using the encoder readings, similar to
  *       how you would on a real robot.
  * </ul>
  *
