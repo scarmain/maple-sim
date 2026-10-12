@@ -2,11 +2,11 @@ package org.ironmaple.simulation.seasonspecific.reefscape2025;
 
 import static org.wpilib.units.Units.Centimeters;
 
+import org.wpilib.framework.RobotBase;
 import org.wpilib.math.geometry.*;
 import org.wpilib.networktables.NetworkTableInstance;
 import org.wpilib.networktables.StructPublisher;
 import org.wpilib.units.Units;
-import org.wpilib.wpilibj.DriverStation;
 import java.util.*;
 import org.ironmaple.simulation.Goal;
 
@@ -65,7 +65,7 @@ public class ReefscapeBargeSimulation extends Goal {
     @Override
     protected void addPoints() {
         arena.addValueToMatchBreakdown(isBlue, "AlgaeInNet", 1);
-        arena.addValueToMatchBreakdown(isBlue, "Auto/AlgaeScoredInAuto", DriverStation.isAutonomous() ? 1 : 0);
+        arena.addValueToMatchBreakdown(isBlue, "Auto/AlgaeScoredInAuto", RobotBase.isAutonomous() ? 1 : 0);
 
         arena.addToScore(isBlue, 4);
     }

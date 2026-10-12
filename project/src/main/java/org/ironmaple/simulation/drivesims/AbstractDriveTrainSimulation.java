@@ -4,7 +4,6 @@ import static org.wpilib.units.Units.Meters;
 
 import org.wpilib.math.geometry.Pose2d;
 import org.wpilib.math.kinematics.ChassisVelocities;
-import org.wpilib.math.kinematics.SwerveModuleState;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.geometry.Geometry;
 import org.dyn4j.geometry.MassType;
@@ -143,9 +142,9 @@ public abstract class AbstractDriveTrainSimulation extends Body {
      *
      * @return the actual chassis speeds in the simulation world, <strong>Robot-Relative</strong>
      */
-    public ChassisSpeeds getDriveTrainSimulatedChassisSpeedsRobotRelative() {
-        ChassisSpeeds speeds = getDriveTrainSimulatedChassisSpeedsFieldRelative();
-        speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+    public ChassisVelocities getDriveTrainSimulatedChassisSpeedsRobotRelative() {
+        ChassisVelocities speeds = getDriveTrainSimulatedChassisSpeedsFieldRelative();
+        speeds = ChassisVelocities.fromFieldRelativeSpeeds(
                 speeds, getSimulatedDriveTrainPose().getRotation());
         return speeds;
     }
@@ -163,7 +162,7 @@ public abstract class AbstractDriveTrainSimulation extends Body {
      *
      * @return the actual chassis speeds in the simulation world, <strong>Field-Relative</strong>
      */
-    public ChassisSpeeds getDriveTrainSimulatedChassisSpeedsFieldRelative() {
+    public ChassisVelocities getDriveTrainSimulatedChassisSpeedsFieldRelative() {
         return GeometryConvertor.toWpilibChassisSpeeds(getLinearVelocity(), getAngularVelocity());
     }
 }

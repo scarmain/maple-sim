@@ -8,7 +8,7 @@ import org.wpilib.math.geometry.Pose3d;
 import org.wpilib.math.geometry.Rotation3d;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.math.geometry.Translation3d;
-import org.wpilib.math.kinematics.ChassisSpeeds;
+import org.wpilib.math.kinematics.ChassisVelocities;
 import org.wpilib.units.measure.Distance;
 import org.wpilib.units.measure.Mass;
 import java.util.function.DoubleSupplier;
@@ -110,9 +110,9 @@ public class GamePieceOnFieldSimulation extends Body implements GamePiece {
      *
      * @param chassisSpeedsWorldFrame the speeds of the game piece
      */
-    public void setVelocity(ChassisSpeeds chassisSpeedsWorldFrame) {
+    public void setVelocity(ChassisVelocities chassisSpeedsWorldFrame) {
         super.setLinearVelocity(GeometryConvertor.toDyn4jLinearVelocity(chassisSpeedsWorldFrame));
-        super.setAngularVelocity(chassisSpeedsWorldFrame.omegaRadiansPerSecond);
+        super.setAngularVelocity(chassisSpeedsWorldFrame.omega);
     }
 
     /**

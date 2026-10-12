@@ -5,6 +5,9 @@ import static org.wpilib.units.Units.Inches;
 import static org.wpilib.units.Units.Meters;
 import static org.wpilib.units.Units.MetersPerSecond;
 
+import org.wpilib.driverstation.Alliance;
+import org.wpilib.driverstation.MatchState;
+import org.wpilib.framework.RobotBase;
 import org.wpilib.math.geometry.Pose2d;
 import org.wpilib.math.geometry.Pose3d;
 import org.wpilib.math.geometry.Rotation2d;
@@ -15,8 +18,8 @@ import org.wpilib.networktables.DoublePublisher;
 import org.wpilib.units.measure.Angle;
 import org.wpilib.units.measure.Distance;
 import org.wpilib.units.measure.LinearVelocity;
-import org.wpilib.wpilibj.DriverStation;
-import org.wpilib.wpilibj.DriverStation.Alliance;
+
+import java.awt.*;
 import java.util.List;
 import org.dyn4j.dynamics.Settings;
 import org.ironmaple.simulation.SimulatedArena;
@@ -287,8 +290,8 @@ public class Arena2026Rebuilt extends SimulatedArena {
             }
         }
 
-        boolean isOnBlue = !DriverStation.getAlliance().isEmpty()
-                && DriverStation.getAlliance().get() == Alliance.Blue;
+        boolean isOnBlue = MatchState.getAlliance().isPresent()
+                && MatchState.getAlliance().get() == Alliance.BLUE;
 
         if (isOnBlue || !isInEfficiencyMode) {
             for (int x = 0; x < 4; x++) {
@@ -326,7 +329,7 @@ public class Arena2026Rebuilt extends SimulatedArena {
 
     @Override
     public void simulationSubTick(int tickNum) {
-        if (shouldClock && !DriverStation.isAutonomous() && DriverStation.isEnabled()) {
+        if (shouldClock && !RobotBase.isAutonomous() && RobotBase.isEnabled()) {
 
             if (matchClock.get() >= nextClockSwapTime) {
                 nextClockSwapTime = matchClock.get() + 25;
@@ -357,9 +360,9 @@ public class Arena2026Rebuilt extends SimulatedArena {
      */
     public boolean isActive(boolean isBlue) {
         if (isBlue) {
-            return blueIsOnClock || DriverStation.isAutonomous() || !shouldClock;
+            return blueIsOnClock || RobotBase.isAutonomous() || !shouldClock;
         } else {
-            return !blueIsOnClock || DriverStation.isAutonomous() || !shouldClock;
+            return !blueIsOnClock || RobotBase.isAutonomous() || !shouldClock;
         }
     }
 

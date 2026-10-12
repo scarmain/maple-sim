@@ -2,11 +2,13 @@ package org.ironmaple.simulation.seasonspecific.crescendo2024;
 
 import static org.ironmaple.utils.LegacyFieldMirroringUtils2024.toCurrentAllianceTranslation;
 
+import org.wpilib.framework.RobotBase;
 import org.wpilib.math.geometry.Translation2d;
-import org.wpilib.wpilibj.DriverStation;
-import org.wpilib.wpilibj.Timer;
+import org.wpilib.system.Timer;
 import org.ironmaple.simulation.SimulatedArena;
 import org.ironmaple.simulation.gamepieces.GamePieceOnFieldSimulation;
+
+import java.awt.*;
 
 public class CrescendoHumanPlayerSimulation implements SimulatedArena.Simulatable {
     private static final Translation2d BLUE_SOURCE_POSITION = new Translation2d(15.6, 0.8);
@@ -19,9 +21,9 @@ public class CrescendoHumanPlayerSimulation implements SimulatedArena.Simulatabl
 
     @Override
     public void simulationSubTick(int subTickNum) {
-        if (!DriverStation.isTeleopEnabled()) return;
+        if (!RobotBase.isTeleopEnabled()) return;
 
-        if (Timer.getFPGATimestamp() - previousThrowTimeSeconds < 1) return;
+        if (Timer.getMonotonicTimestamp() - previousThrowTimeSeconds < 1) return;
 
         final Translation2d sourcePosition = toCurrentAllianceTranslation(BLUE_SOURCE_POSITION);
         /* if there is any game-piece 0.5 meters within the human player station, we don't throw a new note */
@@ -31,6 +33,6 @@ public class CrescendoHumanPlayerSimulation implements SimulatedArena.Simulatabl
 
         /* otherwise, place a note */
         arena.addGamePiece(new CrescendoNoteOnField(sourcePosition));
-        previousThrowTimeSeconds = Timer.getFPGATimestamp();
+        previousThrowTimeSeconds = Timer.getMonotonicTimestamp();
     }
 }

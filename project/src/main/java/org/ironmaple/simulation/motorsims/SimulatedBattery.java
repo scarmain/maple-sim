@@ -5,11 +5,11 @@ import static org.wpilib.units.Units.Volts;
 
 import org.wpilib.driverstation.DriverStationErrors;
 import org.wpilib.math.filter.LinearFilter;
+import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.Current;
 import org.wpilib.units.measure.Voltage;
 import org.wpilib.simulation.BatterySim;
 import org.wpilib.simulation.RoboRioSim;
-import org.wpilib.smartdashboard.SmartDashboard;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -89,8 +89,8 @@ public class SimulatedBattery {
 
         RoboRioSim.setVInVoltage(batteryVoltageVolts);
 
-        SmartDashboard.putNumber("BatterySim/TotalCurrent (Amps)", totalCurrentAmps);
-        SmartDashboard.putNumber("BatterySim/BatteryVoltage (Volts)", batteryVoltageVolts);
+        Telemetry.log("BatterySim/TotalCurrent (Amps)", totalCurrentAmps);
+        Telemetry.log("BatterySim/BatteryVoltage (Volts)", batteryVoltageVolts);
     }
 
     /**

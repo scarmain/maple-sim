@@ -10,13 +10,12 @@ import org.wpilib.networktables.BooleanSubscriber;
 import org.wpilib.networktables.DoublePublisher;
 import org.wpilib.networktables.NetworkTable;
 import org.wpilib.networktables.NetworkTableInstance;
+import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.Time;
-import org.wpilib.wpilibj.DriverStation;
-import org.wpilib.wpilibj.DriverStation.Alliance;
-import org.wpilib.wpilibj.RobotBase;
-import org.wpilib.wpilibj.TimedRobot;
-import org.wpilib.wpilibj.Timer;
-import org.wpilib.wpilibj.smartdashboard.SmartDashboard;
+import org.wpilib.driverstation.Alliance;
+import org.wpilib.framework.RobotBase;
+import org.wpilib.framework.TimedRobot;
+import org.wpilib.system.Timer;
 import java.util.*;
 import org.dyn4j.dynamics.Body;
 import org.dyn4j.dynamics.BodyFixture;
@@ -138,7 +137,7 @@ public abstract class SimulatedArena {
         return SIMULATION_SUB_TICKS_IN_1_PERIOD;
     }
     /** The period length of each sub-tick, in seconds. */
-    private static Time SIMULATION_DT = Seconds.of(TimedRobot.kDefaultPeriod / SIMULATION_SUB_TICKS_IN_1_PERIOD);
+    private static Time SIMULATION_DT = Seconds.of(TimedRobot.DEFAULT_PERIOD / SIMULATION_SUB_TICKS_IN_1_PERIOD);
 
     public static Time getSimulationDt() {
         return SIMULATION_DT;
@@ -165,7 +164,7 @@ public abstract class SimulatedArena {
      * @return The score of the specified team.
      */
     public int getScore(Alliance allianceColor) {
-        return getScore(allianceColor == Alliance.Blue);
+        return getScore(allianceColor == Alliance.BLUE);
     }
 
     /**
@@ -179,7 +178,7 @@ public abstract class SimulatedArena {
     public void addToScore(boolean isBlue, int toAdd) {
         if (isBlue) blueScore += toAdd;
         else redScore += toAdd;
-        addValueToMatchBreakdown(isBlue, DriverStation.isAutonomous() ? "Auto/AutoScore" : "TeleopScore", toAdd);
+        addValueToMatchBreakdown(isBlue, RobotBase.isAutonomous() ? "Auto/AutoScore" : "TeleopScore", toAdd);
     }
 
     /**
@@ -548,7 +547,7 @@ public abstract class SimulatedArena {
             // move through a few sub-periods in each update
             for (int i = 0; i < SIMULATION_SUB_TICKS_IN_1_PERIOD; i++) simulationSubTick(i);
 
-            SmartDashboard.putNumber("MapleArenaSimulation/Dyn4jEngineCPUTimeMS", (System.nanoTime() - t0) / 1000000.0);
+            Telemetry.log("MapleArenaSimulation/Dyn4jEngineCPUTimeMS", (System.nanoTime() - t0) / 1000000.0);
 
             if (resetFieldSubscriber.get()) {
                 SimulatedArena.getInstance().resetFieldForAuto();

@@ -5,7 +5,7 @@ import static org.wpilib.units.Units.Meters;
 
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.geometry.Translation2d;
-import org.wpilib.math.kinematics.ChassisSpeeds;
+import org.wpilib.math.kinematics.ChassisVelocities;
 import org.wpilib.units.measure.Angle;
 import org.wpilib.units.measure.Distance;
 import org.wpilib.units.measure.LinearVelocity;
@@ -44,7 +44,7 @@ public class RebuiltFuelOnFly extends GamePieceProjectile {
     public RebuiltFuelOnFly(
             Translation2d robotPosition,
             Translation2d shooterPositionOnRobot,
-            ChassisSpeeds chassisSpeedsFieldRelative,
+            ChassisVelocities chassisSpeedsFieldRelative,
             Rotation2d shooterFacing,
             Distance initialHeight,
             LinearVelocity launchingSpeed,

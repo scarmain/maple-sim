@@ -1,10 +1,10 @@
 package org.ironmaple.simulation.seasonspecific.reefscape2025;
 
+import org.wpilib.driverstation.Alliance;
 import org.wpilib.math.geometry.Pose2d;
 import org.wpilib.math.geometry.Pose3d;
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.geometry.Translation2d;
-import org.wpilib.wpilibj.DriverStation;
 import java.util.Arrays;
 import java.util.List;
 import org.ironmaple.simulation.SimulatedArena;
@@ -167,7 +167,7 @@ public class Arena2025Reefscape extends SimulatedArena {
      * @param side the alliance side (Red or Blue) to check for CORAL counts
      * @return a 2D array where each entry represents the number of <strong>CORAL</strong> held on each branch
      */
-    public int[][] getBranches(DriverStation.Alliance side) {
-        return side == DriverStation.Alliance.Red ? redReefSimulation.getBranches() : blueReefSimulation.getBranches();
+    public int[][] getBranches(Alliance side) {
+        return side == Alliance.RED ? redReefSimulation.getBranches() : blueReefSimulation.getBranches();
     }
 }

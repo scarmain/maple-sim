@@ -3,6 +3,7 @@ package org.ironmaple.simulation.seasonspecific.reefscape2025;
 import static org.wpilib.units.Units.Centimeters;
 import static org.wpilib.units.Units.Degrees;
 
+import org.wpilib.driverstation.RobotState;
 import org.wpilib.math.geometry.Pose3d;
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.geometry.Rotation3d;
@@ -10,7 +11,6 @@ import org.wpilib.math.geometry.Transform3d;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.math.geometry.Translation3d;
 import org.wpilib.units.measure.Angle;
-import org.wpilib.wpilibj.DriverStation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -198,10 +198,10 @@ public class ReefscapeReefBranch extends Goal {
     @Override
     protected void addPoints() {
         System.out.println("Coral scored on level: " + (level + 1) + " on the " + (isBlue ? "Blue " : "Red") + "reef");
-        arena.addValueToMatchBreakdown(isBlue, "Auto/CoralScoredInAuto", DriverStation.isAutonomous() ? 1 : 0);
+        arena.addValueToMatchBreakdown(isBlue, "Auto/CoralScoredInAuto", RobotState.isAutonomous() ? 1 : 0);
         arena.addValueToMatchBreakdown(isBlue, "CoralScoredOnLevel " + String.valueOf(level + 1), 1);
 
-        int points = DriverStation.isAutonomous() ? AUTO_POINTS_BY_LEVEL[level] : TELEOP_POINTS_BY_LEVEL[level];
+        int points = RobotState.isAutonomous() ? AUTO_POINTS_BY_LEVEL[level] : TELEOP_POINTS_BY_LEVEL[level];
         arena.addToScore(isBlue, points);
     }
 
